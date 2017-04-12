@@ -10,6 +10,13 @@ The Gradient Helper module simplifies the process of applying gradients to Frame
 
 ### Installation
 
+#### NPM Installation
+
+```javascript
+$ cd /your/framer/project
+$ npm i @blackpixel/framer-gradienthelper
+```
+
 #### Manual installation
 
 Copy or save the `Gradient.coffee` file into your project's `modules` folder.
