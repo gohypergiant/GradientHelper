@@ -81,7 +81,7 @@ layerA.style.background = gradient.top("yellow", "red", prefix: "moz")
 ```
 
 ### Gradient Layers
-While a gradient can be applied to any existing layer, for convenience it is possible to create two types of gradient layers. If you wish to animate your gradients, you can do so using one of these classes:
+While a gradient can be applied to any existing layer, for convenience it is possible to create two types of gradient layers. If you wish to animate a gradient, you must use one of these classes:
 
 ```coffeescript
 layerA = new gradient.Layer
