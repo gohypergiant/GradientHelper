@@ -6,7 +6,7 @@
 
 The Gradient Helper module simplifies the process of applying gradients to Framer layers and even enables animated gradients.
 	
-<img src="https://cloud.githubusercontent.com/assets/935/24376320/13b7ea52-1301-11e7-99c0-35b8f327b982.gif" width="497" style="display: block; margin: auto" alt="StatusBarLayer preview" />	
+<img src="https://cloud.githubusercontent.com/assets/935/24376320/13b7ea52-1301-11e7-99c0-35b8f327b982.gif" width="497" style="display: block; margin: auto" alt=“Gradient Helper preview" />	
 
 ### Installation
 
