@@ -1,48 +1,48 @@
 ###
 	# USING THE GRADIENT MODULE
-	
+
 	# Require the module
 	gradient = require "Gradient"
-	
+
 	# Apply a gradient
 	layerA.style.background = gradient.top("yellow", "red")
 	layerA.style.background = gradient.bottom("yellow", "red")
 	layerA.style.background = gradient.left("yellow", "red")
 	layerA.style.background = gradient.right("yellow", "red")
 	layerA.style.background = gradient.angle("yellow", "red", -60)
-	
+
 	# Three-color gradient syntax
 	layerA.style.background = gradient.topThreeColor("yellow", "red", "green")
 	layerA.style.background = gradient.bottomThreeColor("yellow", "red", "green")
 	layerA.style.background = gradient.leftThreeColor("yellow", "red", "green")
 	layerA.style.background = gradient.rightThreeColor("yellow", "red", "green")
 	layerA.style.background = gradient.angleThreeColor("yellow", "red", "green", -60)
-	
+
 	# Radial gradients
 	layerA.style.background = gradient.radial("yellow", "red")
 	layerA.style.background = gradient.radialThreeColor("yellow", "red", "green")
-	
+
 	# Reshape a radial gradient
 	layerA.style.background = gradient.radial("yellow", "red", originX: 0.5, originY: 0, scaleX: 2, scaleY: 1)
-	
+
 	# originX, originY, scaleX and scaleY are percentages.
 	# An originX,originY of 0,0 centers the gradient in the upper left while
 	# 1,1 centers it in the lower right. 0.5,0.5 is the default center.
-	
+
 	# Optionally set the gradient's spread
 	layerA.style.background = gradient.top("yellow", "red", spread: 0.5) # 1 is default, 0 is no transition between colors
-	
+
 	# Optionally set the gradient's offset (linear gradients only)
 	layerA.style.background = gradient.top("yellow", "red", offset: 10) # 0 is no offset, 100 will push the gradient out of view
-	
+
 	# Optionally change the CSS prefix
 	layerA.style.background = gradient.top("yellow", "red", prefix: "moz") # webkit is default, hyphens are added for you
-	
+
 	# GRADIENT LAYERS
 	# While a gradient can be applied to any existing layer, for convenience it is
 	# possible to create two types of gradient layers. If you wish to animate your
 	# gradients you will need to do so using one of these classes.
-	
+
 	layerA = new gradient.Layer
 		firstColor: <string> (hex or rgba or named color)
 		secondColor: <string> (hex or rgba or named color)
@@ -51,7 +51,7 @@
 		prefix: <string> (hyphens are added for you)
 		spread: <number> (0 is no transition)
 		offset: <number>
-	
+
 	layerA = new gradient.RadialLayer
 		firstColor: <string> (hex or rgba or named color)
 		secondColor: <string> (hex or rgba or named color)
@@ -63,11 +63,11 @@
 		gradientOriginY: <number> (0 is top, 1 is bottom)
 		gradientScaleX: <number> (percentage, 1 is 100% scale)
 		gradientScaleY: <number> (percentage, 1 is 100% scale)
-		
+
 	# ANIMATING GRADIENTS
-	
+
 	layerA.animateGradient(<arguments>)
-	
+
 	# Arguments
 	firstColor: <string> (hex or rgba or named color)
 	secondColor: <string> (hex or rgba or named color)
@@ -77,17 +77,24 @@
 	offset: <number>
 	time: <number>
 	curve: <string> ("linear" || "ease-in" || "ease-out" || "ease-in-out" )
-	
+
 	# Arguments for radial gradient animation
 	originX: <number> (0 is left, 1 is right)
 	originY: <number> (0 is top, 1 is bottom)
 	scaleX: <number> (percentage, 1 is 100% scale)
 	scaleY: <number> (percentage, 1 is 100% scale)
-	
+
 	# Examples
 	layerA.animateGradient(direction: -60, spread: 2, offset: 0, time: 2)
 	layerA.animateGradient(offset: -50, curve: "ease-in-out")
 	layerA.animateGradient(secondColor: "blue", spread: 0.5, scaleX: 2, originY: 1)
+
+	# Detect animation start and end
+	layerA.on "gradientAnimationStart", ->
+		print "animation start"
+
+	layerA.on "gradientAnimationEnd", ->
+		print "animation end"
 ###
 
 # string generators
@@ -120,7 +127,7 @@ easeIn = (t) ->
 easeOut = (t) ->
 	# quad function
 	return t*(2-t)
-	
+
 easeInOut = (t) ->
 	# cubic function
 	if t < .5
@@ -152,7 +159,7 @@ exports.bottom = (firstColor = "white", secondColor = "black", {prefix, spread, 
 	if prefix != ""
 		prefix = "-" + prefix + "-"
 	return makeGradientString(direction: "bottom", firstColor: firstColor, secondColor: secondColor, prefix: prefix, spread: spread, offset: offset)
-	
+
 exports.bottomThreeColor = (firstColor = "white", secondColor = "gray", thirdColor = "black", {prefix, spread, offset} = {}) ->
 	prefix ?= "webkit"
 	spread ?= 1
@@ -176,7 +183,7 @@ exports.leftThreeColor = (firstColor = "white", secondColor = "gray", thirdColor
 	if prefix != ""
 		prefix = "-" + prefix + "-"
 	return makeGradientThreeColorString(direction: "left", firstColor: firstColor, secondColor: secondColor, thirdColor: thirdColor, prefix: prefix, spread: spread, offset: offset)
-	
+
 exports.right = (firstColor = "white", secondColor = "black", {prefix, spread, offset} = {}) ->
 	prefix ?= "webkit"
 	spread ?= 1
@@ -184,7 +191,7 @@ exports.right = (firstColor = "white", secondColor = "black", {prefix, spread, o
 	if prefix != ""
 		prefix = "-" + prefix + "-"
 	return makeGradientString(direction: "right", firstColor: firstColor, secondColor: secondColor, prefix: prefix, spread: spread, offset: offset)
-	
+
 exports.rightThreeColor = (firstColor = "white", secondColor = "gray", thirdColor = "black", {prefix, spread, offset} = {}) ->
 	prefix ?= "webkit"
 	spread ?= 1
@@ -237,7 +244,7 @@ defaults =
 	gradientOriginY: 0.5
 	gradientScaleX: 1
 	gradientScaleY: 1
-	
+
 exports.radialThreeColor = (firstColor = "white", secondColor = "gray", thirdColor = "black", {prefix, spread, originX, originY, scaleX, scaleY} = {}) ->
 	prefix ?= "webkit"
 	spread ?= 1
@@ -268,17 +275,21 @@ class exports.Layer extends Layer
 		else
 			gradient = makeGradientThreeColorString(direction: @options.direction, firstColor: @options.firstColor, secondColor: @options.secondColor, thirdColor: @options.thirdColor, prefix: @options.prefix, spread: @options.spread, offset: @options.offset, angle: @options.angle)
 		@.style.background = gradient
-	
+
 	animateGradient: ({firstColor, secondColor, thirdColor, spread, offset, direction, time, curve} = {}, frame = 0) ->
 		firstColor ?= @options.firstColor
 		secondColor ?= @options.secondColor
 		thirdColor ?= @options.thirdColor
 		spread ?= @options.spread
-		offset ?= @options.offset 
+		offset ?= @options.offset
 		direction ?= @options.direction
 		time ?= Framer.Defaults.Animation.time
 		curve ?= "ease-out"
 		totalFrames = time / Framer.Loop.delta
+		if frame == 0
+			@.emit "gradientAnimationStart"
+		else if frame == totalFrames
+			@.emit "gradientAnimationEnd"
 		if typeof @options.direction is "string"
 			switch @options.direction
 				when "top"
@@ -359,6 +370,10 @@ class exports.RadialLayer extends Layer
 		time ?= Framer.Defaults.Animation.time
 		curve ?= "ease-out"
 		totalFrames = time / Framer.Loop.delta
+		if frame == 0
+			@.emit "gradientAnimationStart"
+		else if frame == totalFrames
+			@.emit "gradientAnimationEnd"
 		if frame < totalFrames
 			switch curve
 				when "linear"
@@ -379,7 +394,7 @@ class exports.RadialLayer extends Layer
 			frameOriginX = Utils.modulate(easedFrame, [0, 1], [@options.gradientOriginX, originX]) * 100
 			frameOriginY = Utils.modulate(easedFrame, [0, 1], [@options.gradientOriginY, originY]) * 100
 			frameScaleX = Utils.modulate(easedFrame, [0, 1], [@options.gradientScaleX, scaleX])
-			
+
 			frameScaleY = Utils.modulate(frame, [0, 1], [@options.gradientScaleY, scaleY])
 			frameScaleX = Utils.modulate(frameScaleX, [0, 100], [0, 70]) * 100
 			frameScaleY = Utils.modulate(frameScaleY, [0, 100], [0, 70]) * 100

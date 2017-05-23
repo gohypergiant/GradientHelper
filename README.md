@@ -138,6 +138,15 @@ layerA.animateGradient(offset: -50, curve: "ease-in-out")
 layerA.animateGradient(secondColor: "blue", spread: 0.5, scaleX: 2, originY: 1)
 ```
 
+#### 	Detect animation start and end
+```coffeescript
+	layerA.on "gradientAnimationStart", ->
+		print "animation start"
+
+	layerA.on "gradientAnimationEnd", ->
+		print "animation end"
+```
+
 ---
 
 Website: [blackpixel.com](https://blackpixel.com) &nbsp;&middot;&nbsp;
