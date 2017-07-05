@@ -2,7 +2,9 @@
 
 [![license](https://img.shields.io/github/license/bpxl-labs/RemoteLayer.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](.github/CONTRIBUTING.md)
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
+[![Maintenance](https://img.shields.io/maintenance/no/2017.svg)]()
+
+**Note: On July 5th, 2017, Framer added native support for rendering and animating gradients. This module will no longer be maintained.**
 
 The Gradient Helper module simplifies the process of applying gradients to Framer layers and even enables animated gradients.
 	
