@@ -7,8 +7,8 @@
 **Note: On July 5th, 2017, Framer added native support for rendering and animating gradients. This module will no longer be maintained.**
 
 The Gradient Helper module simplifies the process of applying gradients to Framer layers and even enables animated gradients.
-	
-<img src="https://cloud.githubusercontent.com/assets/935/24376320/13b7ea52-1301-11e7-99c0-35b8f327b982.gif" width="497" style="display: block; margin: auto" alt=“Gradient Helper preview" />	
+
+<img src="https://cloud.githubusercontent.com/assets/935/24376320/13b7ea52-1301-11e7-99c0-35b8f327b982.gif" width="497" style="display: block; margin: auto" alt="Gradient Helper preview" />	
 
 ### Installation
 
